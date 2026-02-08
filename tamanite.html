@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teranite | 泰拉石 - 新一代区块链生态代币</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Teranite泰拉石是新一代区块链生态代币，采用3%税点机制（2%LP分红，1%回购），2%盈利税托底燃烧代币2倍出局。">
+    <meta name="keywords" content="Teranite, 泰拉石, 区块链, 生态代币, LP分红, 回购, 燃烧机制, 加密货币, DeFi">
+    <meta name="author" content="Teranite Team">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://teranite.io/">
+    <meta property="og:title" content="Teranite | 泰拉石 - 新一代区块链生态代币">
+    <meta property="og:description" content="3%税点机制（2%LP分红，1%回购），2%盈利税托底燃烧代币2倍出局。">
+    <meta property="og:image" content="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=crystalline%20teranite%20gem%20stone%20with%20blue%20and%20purple%20glow%20on%20dark%20background&image_size=square_hd">
+    
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://teranite.io/">
+    <meta name="twitter:title" content="Teranite | 泰拉石 - 新一代区块链生态代币">
+    <meta name="twitter:description" content="3%税点机制（2%LP分红，1%回购），2%盈利税托底燃烧代币2倍出局。">
+    <meta name="twitter:image" content="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=crystalline%20teranite%20gem%20stone%20with%20blue%20and%20purple%20glow%20on%20dark%20background&image_size=square_hd">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=crystalline%20teranite%20gem%20stone%20icon&image_size=square">
+    <link rel="apple-touch-icon" href="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=crystalline%20teranite%20gem%20stone%20icon&image_size=square">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0A0E17;
+            --bg-mid: #121A2E;
+            --primary-blue: #165DFF;
+            --primary-purple: #9D29F5;
+            --accent-cyan: #00F5FF;
+            --frost-white: #F0F9FF;
+            --snow-white: #FFFFFF;
+            --burn-orange: #F97316;
+            --success-green: #22C55E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-deep);
+            color: var(--frost-white);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Particle Animation */
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, var(--primary-blue), transparent);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.8;
+            }
+        }
+
+        /* Gradient overlay */
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(22, 93, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(157, 41, 245, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(10, 14, 23, 0.9) 0%, var(--bg-deep) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 23, 0.7);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(22, 93, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(22, 93, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .menu-toggle {
+            position: relative;
+        }
+
+        .menu-btn {
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: var(--accent-cyan);
+        }
+
+        .menu-btn:hover {
+            background: rgba(22, 93, 255, 0.2);
+            transform: scale(1.1);
+            color: var(--snow-white);
+        }
+
+        .menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: transparent;
+            backdrop-filter: none;
+            border-radius: 8px;
+            border: none;
+            box-shadow: none;
+            padding: 1rem;
+            display: none;
+            z-index: 1000;
+        }
+
+        .menu.show {
+            display: block;
+        }
+
+        .menu-links {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .menu-link {
+            display: block;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-align: left;
+            animation: color-change 3s ease-in-out infinite;
+        }
+
+        .menu-link:hover {
+            color: var(--snow-white);
+            background: rgba(22, 93, 255, 0.2);
+            transform: translateX(5px);
+            animation: none;
+        }
+
+        @keyframes color-change {
+            0% {
+                color: var(--accent-cyan);
+            }
+            25% {
+                color: #ff6b6b;
+            }
+            50% {
+                color: #4ecdc4;
+            }
+            75% {
+                color: #45b7d1;
+            }
+            100% {
+                color: var(--accent-cyan);
+            }
+        }
+
+
+
+        .language-toggle .lang-btn:first-child {
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: var(--accent-cyan);
+            border: 1px solid rgba(22, 93, 255, 0.3);
+            background: transparent;
+        }
+
+        .language-toggle .lang-btn:first-child:hover {
+            background: rgba(22, 93, 255, 0.2);
+            transform: scale(1.05);
+            color: var(--snow-white);
+        }
+
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: rgba(18, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            border: 1px solid rgba(22, 93, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(22, 93, 255, 0.2);
+            padding: 0.5rem;
+            display: none;
+            z-index: 1000;
+        }
+
+        .language-menu.show {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            color: var(--frost-white);
+            border: 1px solid rgba(22, 93, 255, 0.3);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .lang-btn:hover {
+            background: rgba(22, 93, 255, 0.2);
+            border-color: var(--primary-blue);
+        }
+
+        .lang-btn.active {
+            background: var(--primary-blue);
+            color: var(--snow-white);
+            border-color: var(--primary-blue);
+        }
+
+        .nav-links {
+            order: 1;
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            color: var(--frost-white);
+            border: 1px solid rgba(22, 93, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(22, 93, 255, 0.2);
+            border-color: var(--primary-blue);
+        }
+
+        .lang-btn.active {
+            background: var(--primary-blue);
+            color: var(--snow-white);
+            border-color: var(--primary-blue);
+        }
+
+        .nav-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+            position: relative;
+            white-space: nowrap;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--snow-white);
+            background: rgba(22, 93, 255, 0.2);
+            text-shadow: 0 0 20px rgba(0, 245, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Main content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .logo-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 
+                0 0 30px rgba(22, 93, 255, 0.4),
+                0 0 60px rgba(157, 41, 245, 0.2),
+                inset 0 0 30px rgba(0, 245, 255, 0.1);
+            animation: pulse-glow 3s ease-in-out infinite, rotate 20s linear infinite;
+            object-fit: cover;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 30px rgba(22, 93, 255, 0.4),
+                    0 0 60px rgba(157, 41, 245, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 0 50px rgba(22, 93, 255, 0.6),
+                    0 0 100px rgba(157, 41, 245, 0.3);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 15vw, 10rem);
+            letter-spacing: 0.1em;
+            background: linear-gradient(180deg, var(--snow-white) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(22, 93, 255, 0.3);
+            margin-bottom: 0.5rem;
+            animation: title-shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes title-shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--frost-white);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .tagline span {
+            color: var(--burn-orange);
+            font-weight: 600;
+        }
+
+        .tech-carousel {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .carousel-container {
+            width: 375px;
+            height: 180px;
+            border: 2px solid;
+            border-image: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan), var(--primary-purple)) 1;
+            border-radius: 12px;
+            background: rgba(18, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 20px rgba(22, 93, 255, 0.3),
+                inset 0 0 20px rgba(22, 93, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-item {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .carousel-item.loading {
+            background: linear-gradient(135deg, rgba(22, 93, 255, 0.05), rgba(157, 41, 245, 0.05));
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(22, 93, 255, 0.3);
+            border-top: 3px solid var(--accent-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            text-align: center;
+            letter-spacing: 0.1em;
+        }
+
+        .tokenomics-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            letter-spacing: 0.05em;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple), var(--accent-cyan), var(--primary-blue));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(22, 93, 255, 0.3);
+            margin-bottom: 2rem;
+            animation: color-shift 4s ease-in-out infinite;
+        }
+
+        @keyframes color-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(22, 93, 255, 0.1) 0%, rgba(18, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(22, 93, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 40px rgba(22, 93, 255, 0.2);
+        }
+
+        .stat-card.burn {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(18, 26, 46, 0.8) 100%);
+            border-color: rgba(249, 115, 22, 0.3);
+        }
+
+        .stat-card.burn:hover {
+            border-color: var(--burn-orange);
+            box-shadow: 0 10px 40px rgba(249, 115, 22, 0.2);
+        }
+
+        .stat-card.dividend {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(18, 26, 46, 0.8) 100%);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .stat-card.dividend:hover {
+            border-color: var(--success-green);
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.2);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--frost-white);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--snow-white);
+        }
+
+        .stat-card.burn .stat-value {
+            color: var(--burn-orange);
+        }
+
+        .stat-card.dividend .stat-value {
+            color: var(--success-green);
+        }
+
+        .stat-value.loading {
+            opacity: 0.5;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Mechanism Section */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.05em;
+        }
+
+        .mechanism-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .tamanite-visual {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tamanite-gem {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at 30% 30%, var(--snow-white) 0%, var(--primary-blue) 40%, var(--primary-purple) 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 50px rgba(22, 93, 255, 0.4),
+                inset -20px -20px 40px rgba(0, 0, 0, 0.2),
+                inset 10px 10px 20px rgba(255, 255, 255, 0.3);
+            animation: tamanite-pulse 4s ease-in-out infinite;
+        }
+
+        .orbiting-balls {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: orbit-rotate 20s linear infinite;
+        }
+
+        .orbital-ball {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 
+                0 0 30px rgba(22, 93, 255, 0.4),
+                inset -10px -10px 20px rgba(0, 0, 0, 0.2),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.3);
+            animation: tamanite-pulse 4s ease-in-out infinite, orbit-counter-rotate 20s linear infinite;
+        }
+
+        .orbital-ball .text {
+            background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: rainbow-shift 3s ease-in-out infinite;
+        }
+
+        @keyframes rainbow-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .orbital-ball.gamefi {
+            background: radial-gradient(circle at 30% 30%, #FFEAA7 0%, #FF6B6B 40%, #4ECDC4 100%);
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .orbital-ball.stake {
+            background: radial-gradient(circle at 30% 30%, #FFEAA7 0%, #4ECDC4 40%, #45B7D1 100%);
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+        }
+
+        .orbital-ball.dividend {
+            background: radial-gradient(circle at 30% 30%, #FFEAA7 0%, #45B7D1 40%, #96CEB4 100%);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .orbital-ball.x2 {
+            background: radial-gradient(circle at 30% 30%, #FFEAA7 0%, #96CEB4 40%, #FFEAA7 100%);
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+        }
+
+        @keyframes orbit-rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes orbit-counter-rotate {
+            0% {
+                transform: translateX(-50%) rotate(0deg) translateY(0);
+            }
+            100% {
+                transform: translateX(-50%) rotate(-360deg) translateY(0);
+            }
+        }
+
+        .orbital-ball.stake, .orbital-ball.x2 {
+            animation: tamanite-pulse 4s ease-in-out infinite, orbit-counter-rotate-y 20s linear infinite;
+        }
+
+        @keyframes orbit-counter-rotate-y {
+            0% {
+                transform: translateY(-50%) rotate(0deg) translateX(0);
+            }
+            100% {
+                transform: translateY(-50%) rotate(-360deg) translateX(0);
+            }
+        }
+
+        @keyframes tamanite-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 
+                    0 0 50px rgba(22, 93, 255, 0.4),
+                    inset -20px -20px 40px rgba(0, 0, 0, 0.2),
+                    inset 10px 10px 20px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                transform: scale(1.15);
+                box-shadow: 
+                    0 0 80px rgba(22, 93, 255, 0.6),
+                    inset -25px -25px 50px rgba(0, 0, 0, 0.2),
+                    inset 15px 15px 30px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .energy-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--primary-purple);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Steps */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-icon.fire {
+            animation: fire-burn 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes fire-burn {
+            from {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            to {
+                transform: scale(1);
+                filter: brightness(1.3);
+            }
+        }
+
+        .step-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-desc {
+            color: rgba(240, 249, 255, 0.7);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .copy-btn {
+            background: var(--primary-blue);
+            color: var(--bg-deep);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: var(--success-green);
+        }
+
+        /* Contract Section Hero (Shiny) */
+        .contract-section-hero {
+            background: linear-gradient(135deg, rgba(22, 93, 255, 0.15) 0%, rgba(157, 41, 245, 0.1) 50%, rgba(22, 93, 255, 0.15) 100%);
+            border: 2px solid var(--primary-blue);
+            border-radius: 50px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .contract-section-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: shine 4s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(22, 93, 255, 0.3), 0 0 40px rgba(157, 41, 245, 0.1);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(22, 93, 255, 0.5), 0 0 60px rgba(157, 41, 245, 0.2);
+            }
+        }
+
+        .contract-section-hero .contract-label {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contract-section-hero .contract-address {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contract-section-hero .address {
+            font-family: 'Outfit', monospace;
+            font-size: 0.95rem;
+            color: var(--snow-white);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            border: 1px solid rgba(22, 93, 255, 0.4);
+            word-break: break-all;
+            text-shadow: 0 0 10px rgba(22, 93, 255, 0.5);
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn.primary {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            color: var(--snow-white);
+            box-shadow: 0 4px 20px rgba(22, 93, 255, 0.4);
+        }
+
+        .cta-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(22, 93, 255, 0.6);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--accent-cyan);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(22, 93, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .cta-btn.community {
+            background: linear-gradient(135deg, #1d9bf0 0%, #0a66c2 100%);
+            color: var(--snow-white);
+            border: none;
+            box-shadow: 0 4px 20px rgba(29, 155, 240, 0.3);
+        }
+
+        .cta-btn.community:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(29, 155, 240, 0.4);
+        }
+
+        .cta-btn.telegram {
+            background: linear-gradient(135deg, #0088cc 0%, #0056b3 100%);
+            color: var(--snow-white);
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.3);
+        }
+
+        .cta-btn.telegram:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 136, 204, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-top: 1px solid rgba(22, 93, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            color: rgba(240, 249, 255, 0.5);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.1em;
+        }
+
+        .tamanite {
+            color: var(--primary-blue);
+        }
+
+        .gamefi-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 
+                0 0 10px rgba(0, 245, 255, 0.7),
+                0 0 20px rgba(157, 41, 245, 0.5),
+                0 0 30px rgba(22, 93, 255, 0.3);
+            animation: game-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes game-glow {
+            from {
+                text-shadow: 
+                    0 0 10px rgba(0, 245, 255, 0.7),
+                    0 0 20px rgba(157, 41, 245, 0.5),
+                    0 0 30px rgba(22, 93, 255, 0.3);
+            }
+            to {
+                text-shadow: 
+                    0 0 15px rgba(0, 245, 255, 0.9),
+                    0 0 30px rgba(157, 41, 245, 0.7),
+                    0 0 40px rgba(22, 93, 255, 0.5);
+            }
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--frost-white);
+            line-height: 1.6;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            background: rgba(18, 26, 46, 0.8);
+            border: 1px solid rgba(22, 93, 255, 0.3);
+            border-radius: 12px;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 40px rgba(22, 93, 255, 0.2);
+        }
+
+        .contact-link span:first-child {
+            font-size: 1.5rem;
+        }
+
+        .contact-link span:last-child {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .logo {
+                width: 140px;
+                height: 140px;
+            }
+
+            .navbar {
+                left: 1rem;
+                transform: none;
+                top: 1rem;
+                padding: 0.75rem 1.5rem;
+                flex-direction: row;
+                gap: 1rem;
+            }
+
+            .menu-btn {
+                font-size: 1.2rem;
+                padding: 0.3rem;
+            }
+
+            .menu {
+                right: 0;
+                margin-top: 0.3rem;
+                background: transparent;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+            }
+
+            .menu-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .menu-link {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .language-toggle {
+                position: relative;
+            }
+
+            .language-toggle .lang-btn:first-child {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .language-menu {
+                right: 0;
+                margin-top: 0.3rem;
+            }
+
+            .lang-btn {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .address {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particle-bg" id="particleBg"></div>
+    
+    <!-- Gradient Overlay -->
+    <div class="gradient-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="menu-toggle">
+            <div class="menu-btn" onclick="toggleMenu()">☰ 菜单</div>
+            <div class="menu" id="menu">
+                <ul class="menu-links">
+                    <li><a href="#hero" class="menu-link">首页</a></li>
+                    <li><a href="#tokenomics" class="menu-link">代币经济学</a></li>
+                    <li><a href="#mechanism" class="menu-link">机制</a></li>
+                    <li><a href="#gamefi" class="menu-link">BSCfi</a></li>
+                    <li><a href="#contact" class="menu-link">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="logo-container">
+                <img src="IMG_20260208_010406.jpg" alt="Teranite Logo" class="logo">
+            </div>
+            
+            <h1 class="title">TERANITE</h1>
+            <h2 class="subtitle">泰拉石</h2>
+            <p class="tagline">新一代 <span>区块链生态代币</span></p>
+            
+            <!-- Tech Carousel -->
+            <div class="tech-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-item loading">
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">图片加载中...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tokenomics-title" id="tokenomics">代币经济学</div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">代币总数</div>
+                    <div class="stat-value">1000万亿</div>
+                </div>
+                <div class="stat-card dividend">
+                    <div class="stat-label">📈 流动性分红</div>
+                    <div class="stat-value">2%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">🔄 回购</div>
+                    <div class="stat-value">1%</div>
+                </div>
+                <div class="stat-card burn">
+                    <div class="stat-label">🔥 盈利税</div>
+                    <div class="stat-value">2%</div>
+                </div>
+            </div>
+
+            <!-- Contract Section (Shiny) -->
+            <div class="contract-section-hero">
+                <div class="contract-label">合约地址 (BSC)</div>
+                <div class="contract-address">
+                    <span class="address" id="contractAddress">0xE3cFDFABc7c4968Cd3B817Fd8efceBd7CB2b647d</span>
+                    <button class="copy-btn" onclick="copyAddress()">Copy</button>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="cta-buttons">
+                <a href="https://lvswap.app/?p=0x592ada2575d3dfe1afbf714111a27842aa1e72ed" target="_blank" class="cta-btn primary">
+                    🥞 Buy on Swap
+                </a>
+                <a href="https://bscscan.com/" target="_blank" class="cta-btn secondary">
+                    🔍 BSCScan
+                </a>
+                <a href="https://dexscreener.com/" target="_blank" class="cta-btn secondary">
+                    📈 Chart
+                </a>
+                <a href="https://x.com/TeraniteFight" target="_blank" class="cta-btn community">
+                    𝕏 Twitter
+                </a>
+                <a href="https://t.me/TeraniteFight" target="_blank" class="cta-btn telegram">
+                    💬 Telegram
+                </a>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="mechanism" class="section">
+            <h2 class="section-title">⚡ 机制说明 ⚡</h2>
+            
+            <div class="mechanism-container">
+                <div class="tamanite-visual">
+                    <div class="energy-ring"></div>
+                    <div class="tamanite-gem"></div>
+                    
+                    <!-- Orbiting Small Balls -->
+                    <div class="orbiting-balls">
+                        <div class="orbital-ball gamefi"><span class="text">gamefi</span></div>
+                        <div class="orbital-ball stake"><span class="text">质押</span></div>
+                        <div class="orbital-ball dividend"><span class="text">LP分红</span></div>
+                        <div class="orbital-ball x2"><span class="text">2倍出局</span></div>
+                    </div>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">🔄</div>
+                        <div class="step-title">交易税点</div>
+                        <div class="step-desc">每笔交易收取3%税点，其中2%用于LP分红，1%用于回购，为持有者创造持续收益。</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon fire">🔥</div>
+                        <div class="step-title">盈利税</div>
+                        <div class="step-desc">2%盈利税托底燃烧代币，确保价值稳步提升。</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">🚀</div>
+                        <div class="step-title">2倍出局</div>
+                        <div class="step-desc">创新的2倍出局机制，为早期投资者提供合理的收益预期，同时保持代币的长期价值增长。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BSCfi Section -->
+        <section id="gamefi" class="gamefi-section">
+            <h2 class="gamefi-title">🎮 BSCfi 生态</h2>
+            <div class="gamefi-content">
+                <p>Teranite泰拉石正在构建完整的BSCfi生态系统，为用户提供边玩边赚的全新体验。我们计划推出多款基于区块链技术的休闲游戏，玩家可以通过游戏获得泰拉石代币奖励，同时游戏内资产可以与质押系统联动，获得额外收益。</p>
+                <p>BSCfi模块正在积极开发中，泰拉石（Teranite）的生态会越来越丰富，敬请期待更多精彩内容......</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2 class="contact-title" style="text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan), var(--primary-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 20px rgba(22, 93, 255, 0.3); animation: color-shift 4s ease-in-out infinite;">📞 联系我们</h2>
+            <div class="contact-content">
+                <p>如果您对Teranite泰拉石项目有任何疑问或建议，欢迎通过以下方式联系我们：</p>
+            </div>
+            <div class="contact-links">
+                <a href="https://x.com/TeraniteFight" target="_blank" class="contact-link">
+                    <span>𝕏</span>
+                    <span>Twitter</span>
+                </a>
+                <a href="https://t.me/TeraniteFight" target="_blank" class="contact-link">
+                    <span>💬</span>
+                    <span>Telegram</span>
+                </a>
+                <a href="javascript:void(0)" onclick="navigator.clipboard.writeText('597334502').then(function(){alert('已复制: 597334502');}, function(){alert('复制失败，请手动复制: 597334502');});" class="contact-link">
+                    <span>QQ群</span>
+                    <span>597334502</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p class="footer-text">Teranite泰拉石是社区驱动的去中心化区块链项目。投资有风险，入市需谨慎。</p>
+            <div class="footer-brand">
+                TERANITE — <span class="tamanite">泰拉石</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const particleBg = document.getElementById('particleBg');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 10 + 5;
+                
+                // Random animation delay
+                const delay = Math.random() * 5;
+                
+                // Random color
+                const colors = ['#165DFF', '#9D29F5', '#00F5FF'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Set styles
+                particle.style.left = `${x}%`;
+                particle.style.top = `${y}%`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.backgroundColor = color;
+                particle.style.boxShadow = `0 0 10px ${color}`;
+                
+                particleBg.appendChild(particle);
+            }
+        }
+
+        // Copy address to clipboard
+        function copyAddress() {
+            const address = document.getElementById('contractAddress').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Menu toggle functionality
+        let mainMenuVisible = false;
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            mainMenuVisible = !mainMenuVisible;
+            menu.classList.toggle('show', mainMenuVisible);
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!menuToggle.contains(event.target) && mainMenuVisible) {
+                toggleMenu();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
+    </script>
+</body>
+</html>
